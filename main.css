@@ -7,7 +7,7 @@ body::before {
   content:"";
   position:fixed;
   inset:0;
-  background:url("bg.jpg") center/cover no-repeat;
+  background:url("final-fantasy.jpg") center/cover no-repeat;
   opacity:.18;
   filter:blur(1px);
   z-index:-1;
@@ -125,3 +125,4 @@ body::before {
 @media (max-width:768px) { #p1 { font-size:55px; line-height:60px; } }
 @media (max-width:576px) { #p1 { font-size:44px; line-height:50px; } }
 @media (max-width:420px) { #p1 { font-size:37px; line-height:42px; } }
+

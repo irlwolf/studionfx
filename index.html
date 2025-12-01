@@ -9,6 +9,7 @@
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <link rel="stylesheet" href="main.css">
 </head>
 
@@ -42,11 +43,9 @@
           <span class="tag-secondary">HD LYRIC OUT</span>
         </div>
 
-        <!-- FIXED VIDEO CODE -->
         <video id="exclusive-video" autoplay loop muted playsinline>
           <source src="exclusive.mp4" type="video/mp4">
         </video>
-
       </div>
     </div>
 
@@ -103,7 +102,6 @@
     document.addEventListener("scroll", animateOnScroll);
     animateOnScroll();
 
-    // UNMUTE VIDEO WHEN WATCH NOW CLICKED
     document.getElementById("play-btn").addEventListener("click", () => {
       const v = document.getElementById("exclusive-video");
       v.muted = false;

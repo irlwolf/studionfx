@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>studionfx</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+  <!-- HEADER / NAV -->
+  <div id="header">
+    <h1>studionfx</h1>
+    <div id="nav">
+      <a href="#">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="main">
+    <p id="p1">GET<br>YOUR<br>FREE<br>PRESETS</p>
+    <img id="im1" src="bb [A96B58C].jpg" alt="main-preset-img">
+  </section>
+
+  <!-- UPCOMING -->
+  <section class="imm">
+    <div id="fp">
+      <img id="kk" src="Studionfx.png" alt="">
+      <p id="kp">[ Scene Maari Pochey Lyric Video ]</p>
+      <button id="b1"><a href="#">Watch Now</a></button>
+    </div>
+  </section>
+
+  <!-- EXCLUSIVE VIDEO -->
+  <section class="video-sec">
+    <p id="vs-title">Exclusive Video Release</p>
+
+    <div class="vbox">
+      <div class="video-wrapper">
+        <div class="video-badge">
+          <span>EXCLUSIVE</span>
+          <span class="tag-secondary">HD LYRIC CUT</span>
+        </div>
+        <video id="exclusive-video" src="sample1.mp4" autoplay loop muted playsinline></video>
+      </div>
+    </div>
+
+    <p id="vs-cap">Scene Maari Pochey – Official Edit Preview</p>
+
+    <div class="exclusive-actions">
+      <button id="play-btn" class="btn primary">▶ Play Full Video</button>
+      <a href="sample1.mp4" download class="btn outline">⬇ Download Preset Pack</a>
+      <button id="like-btn" class="btn like">
+        <span class="heart">❤️</span>
+        <span id="like-count">120</span>
+        <span class="like-label">Likes</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- LATEST -->
+  <section class="lt">
+    <p id="p3">Latest on Kollywood</p>
+    <div class="i1">
+      <img src="placeholder3.jpg">
+      <img src="placeholder4.jpg">
+      <img src="placeholder5.jpg">
+      <img src="placeholder6.jpg">
+    </div>
+    <p id="p4">BLOCKBUSTER MOVIES</p>
+    <button id="b2"><a href="#">Watch Now</a></button>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer">
+    <p class="contact">📩 studionfxcreatice@gmail.com</p>
+
+    <div class="social-links">
+      <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-telegram"></i></a>
+    </div>
+
+    <p class="copy">© 2025 studionfx — All rights reserved</p>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function animateOnScroll() {
+      document.querySelectorAll(".imm, .video-sec, .lt").forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 120 && rect.bottom > 120) {
+          el.classList.add("show");
+          el.classList.remove("hide");
+        } else {
+          el.classList.add("hide");
+          el.classList.remove("show");
+        }
+      });
+    }
+    document.addEventListener("scroll", animateOnScroll);
+    animateOnScroll();
+
+    const likeBtn = document.getElementById("like-btn");
+    const likeCountEl = document.getElementById("like-count");
+    let liked = false;
+    let likeCount = parseInt(likeCountEl.textContent);
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      likeCount += liked ? 1 : -1;
+      likeCountEl.textContent = likeCount;
+      likeBtn.classList.toggle("liked");
+    });
+
+    document.getElementById("play-btn").addEventListener("click", () => {
+      const v = document.getElementById("exclusive-video");
+      v.muted = false;
+      v.play();
+    });
+  </script>
+
+</body>
+</html>

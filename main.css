@@ -213,7 +213,7 @@ body::before {
 /* 1080×1350 portrait thumbnails */
 .i1 img {
   aspect-ratio:1080/1350;
-  width:300px;
+  width:330px;
   height:auto;
   border-radius:10px;
   object-fit:cover;
@@ -267,3 +267,4 @@ body::before {
   0% { left:-100%; }
   100% { left:120%; }
 }
+

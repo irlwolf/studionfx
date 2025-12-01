@@ -46,27 +46,43 @@ body::before {
 /* ───────── HERO ───────── */
 #main {
   display:flex;
-  justify-content:space-between;
+  justify-content:space-between;  /* Not center & not corner */
   align-items:center;
   padding:60px 80px;
+  gap:40px;
 }
+
 #p1 {
   font-size:80px;
   line-height:85px;
   font-family:Poppins;
   font-weight:700;
-}
-#im1 {
-  width:450px;
-  border-radius:10px;
-  box-shadow:none !important;
+  max-width:520px;
 }
 
-/* ───────── UPCOMING ───────── */
-.imm { padding:60px 0; text-align:center; opacity:0; transform:translateY(60px); transition:0.8s; }
-.imm.show { opacity:1; transform:translateY(0); }
-#kk { width:250px; border-radius:10px; margin:20px 0; }
-#kp { font-size:26px; margin-bottom:20px; }
+#im1 {
+  width:550px;
+  border-radius:14px;
+  border:2px solid rgba(255,255,255,0.13);
+  box-shadow:0 0 40px rgba(255,0,0,0.15);
+}
+
+/* Mobile responsive hero */
+@media (max-width:900px) {
+  #main {
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+  }
+  #p1 {
+    font-size:55px;
+    line-height:62px;
+  }
+  #im1 {
+    width:310px;
+  }
+}
 
 /* ───────── EXCLUSIVE VIDEO ───────── */
 .video-sec { padding:60px 0; text-align:center; opacity:0; transform:translateY(60px); transition:0.8s; }
@@ -76,7 +92,7 @@ body::before {
 .video-wrapper { position:relative; border-radius:12px; overflow:hidden; }
 #exclusive-video { width:100%; border-radius:12px; }
 
-/* EXCLUSIVE BADGE */
+/* VIDEO BADGE */
 .video-badge {
   position:absolute; top:12px; left:12px;
   display:flex; gap:8px; padding:6px 14px;
@@ -86,18 +102,17 @@ body::before {
 }
 .tag-secondary { background:#D00000; padding:3px 8px; border-radius:999px; }
 
-/* Shine Video Hover */
+/* Shine Hover */
 .video-wrapper:hover::after {
   content:"";
   position:absolute;
   top:0; left:-100%;
   width:100%; height:100%;
   background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.55)50%, transparent 100%);
-  transform:skewX(-20deg);
   animation:shine 1s ease;
 }
 
-/* ───────── BUTTON SYSTEM ───────── */
+/* BUTTON SYSTEM */
 .btn {
   padding:14px 24px;
   border-radius:7px;
@@ -127,56 +142,30 @@ body::before {
 .btn.primary:hover { background:black; border-color:black; }
 .btn.outline { background:#111; color:#D00000; }
 .btn.outline:hover { background:#D00000; color:white; }
-.btn.like { background:#222; border-color:#444; }
-.btn.like.liked { background:#D00000; border-color:#D00000; }
-
-/* WATCH NOW BUTTONS */
-#b1, #b2 {
-  padding:14px 30px;
-  border-radius:7px;
-  background:#D00000;
-  border:2px solid #D00000;
-}
-#b1 a, #b2 a {
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-}
 
 /* ───────── LATEST ───────── */
 .lt { padding:60px 0; text-align:center; opacity:0; transform:translateY(60px); transition:0.8s; }
 .lt.show { opacity:1; transform:translateY(0); }
 #p3 { font-size:75px; font-family:Poppins; font-weight:700; color:#D00000; }
 
-#p4 {
-  font-size:52px;
-  font-family:Poppins;
-  font-weight:700;
-  margin:40px 0 30px;
-}
-
+/* 1080×1350 portrait thumbnails */
 .i1 img {
-  aspect-ratio: 1080 / 1350; /* EXACT ratio */
-  width: 280px;               /* you can increase later */
-  height: auto;               /* auto adjusts with ratio */
-  border-radius: 10px;
-  object-fit: cover;
-  margin: 12px;
-  transition: 0.3s;
+  aspect-ratio:1080/1350;
+  width:330px;
+  height:auto;
+  border-radius:10px;
+  object-fit:cover;
+  margin:12px;
+  transition:0.3s;
 }
-.i1 img:hover {
-  transform: scale(1.04);
-}
-.i1 img {
-  width: 330px;  /* bigger but SAME 1080x1350 ratio */
-}
+.i1 img:hover { transform:scale(1.04); }
 
+@media (max-width:600px) { .i1 img { width:220px; } }
 
 /* ───────── FOOTER GLASS ───────── */
 #footer {
   background:rgba(0,0,0,0.45);
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
   border-top:2px solid rgba(208,0,0,0.45);
   padding:25px;
   text-align:center;
@@ -187,7 +176,4 @@ body::before {
 .social-links a:hover { color:#D00000; transform:scale(1.2); }
 .copy { font-size:15px; opacity:0.85; }
 
-/* Shine Animation */
 @keyframes shine { 0%{left:-100%;} 100%{left:120%;} }
-
-

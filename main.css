@@ -66,3 +66,53 @@ body::before {
 /* Responsive improvements */
 @media (max-width:992px) { #p1 { font-size:60px; line-height:65px; } }
 @media (max-width:576px) { #p1 { font-size:46px; line-height:52px; } }
+/* ---- FIX CUSTOM BUTTON STYLE ---- */
+.btn {
+  background: #D00000 !important;
+  border: 2px solid #D00000 !important;
+  border-radius: 6px !important; /* 4–7px perfect */
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: 0.25s;
+  position: relative;
+  overflow: hidden;
+  color: white !important;
+}
+
+/* Hover */
+.btn:hover {
+  background: black !important;
+  border-color: black !important;
+  color: white !important;
+}
+
+/* Outline button (Spotify) */
+.btn-outline-danger {
+  background: #111 !important;
+  color: #D00000 !important;
+  border: 2px solid #D00000 !important;
+  border-radius: 6px !important;
+}
+.btn-outline-danger:hover {
+  background: #D00000 !important;
+  color: white !important;
+}
+
+/* Shining hover effect */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.4) 50%, transparent 100%);
+  transform: skewX(-25deg);
+}
+.btn:hover::after {
+  animation: shine 1s;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 120%; }
+}
+

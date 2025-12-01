@@ -87,8 +87,8 @@ body::before {
   transition:.25s;
 }
 .btn:hover {
-  background:black !important;
-  border-color:black !important;
+  background:#D00000 !important;
+  border-color:#f8f8ff !important;
 }
 
 /* Outline button */
@@ -125,6 +125,7 @@ body::before {
 @media (max-width:768px) { #p1 { font-size:55px; line-height:60px; } }
 @media (max-width:576px) { #p1 { font-size:44px; line-height:50px; } }
 @media (max-width:420px) { #p1 { font-size:37px; line-height:42px; } }
+
 
 
 

@@ -31,15 +31,6 @@
     <img id="im1" src="vijay.jpg" alt="main-preset-img">
   </section>
 
-  <!-- UPCOMING -->
-  <!-- <section class="imm">
-    <div id="fp">
-      <img id="kk" src="Studionfx.png" alt="">
-      <p id="kp">[ Scene Maari Pochey Lyric Video ]</p>
-      <button id="b1"><a href="#">Watch Now</a></button>
-    </div>
-  </section> -->
-
   <!-- EXCLUSIVE VIDEO -->
   <section class="video-sec">
     <p id="vs-title">Exclusive Video Release</p>
@@ -50,7 +41,12 @@
           <span>EXCLUSIVE</span>
           <span class="tag-secondary">HD LYRIC OUT</span>
         </div>
-        <video id="ezgif-3882484348b02e.mov" autoplay loop muted playsinline></video>
+
+        <!-- FIXED VIDEO CODE -->
+        <video id="exclusive-video" autoplay loop muted playsinline>
+          <source src="exclusive.mp4" type="video/mp4">
+        </video>
+
       </div>
     </div>
 
@@ -59,11 +55,6 @@
     <div class="exclusive-actions">
       <button id="play-btn" class="btn primary">▶ Watch Now on YouTube</button>
       <a href="https://open.spotify.com/track/0ZzcM0oWkusgpLHx40BQmA" download class="btn outline">Listen On Spotify</a>
-      <!-- <button id="like-btn" class="btn like">
-        <span class="heart">❤️</span>
-        <span id="like-count">120</span>
-        <span class="like-label">Likes</span>
-      </button> -->
     </div>
   </section>
 
@@ -76,10 +67,9 @@
       <img src="8.jpg">
       <img src="9.jpg">
     </div>
-    <!-- <p id="p4">Tutorials</p> -->
   </br>
     <img id="im1" src="stdnfx.png" alt="main-preset-img">
-    </br>
+  </br>
     <button id="b2"><a href="https://youtu.be/afXeMJU7lm4?si=555QI9MAhQRBLnAC">Watch Now</a></button>
   </section>
 
@@ -113,17 +103,7 @@
     document.addEventListener("scroll", animateOnScroll);
     animateOnScroll();
 
-    const likeBtn = document.getElementById("like-btn");
-    const likeCountEl = document.getElementById("like-count");
-    let liked = false;
-    let likeCount = parseInt(likeCountEl.textContent);
-    likeBtn.addEventListener("click", () => {
-      liked = !liked;
-      likeCount += liked ? 1 : -1;
-      likeCountEl.textContent = likeCount;
-      likeBtn.classList.toggle("liked");
-    });
-
+    // UNMUTE VIDEO WHEN WATCH NOW CLICKED
     document.getElementById("play-btn").addEventListener("click", () => {
       const v = document.getElementById("exclusive-video");
       v.muted = false;
@@ -133,9 +113,3 @@
 
 </body>
 </html>
-
-
-
-
-
-

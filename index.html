@@ -78,5 +78,60 @@
 
     <img id="brand-img" src="stdnfx.png" alt="studionfx brand">
     
-    <div
+    <div class="latest-actions">
+      <a id="latest-watch"
+         class="btn primary"
+         href="https://youtu.be/afXeMJU7lm4?si=555QI9MAhQRBLnAC"
+         target="_blank"
+         rel="noopener">
+        ▶ Watch on YouTube
+      </a>
+    </div>
+  </section>
 
+  <!-- FOOTER -->
+  <div id="footer">
+    <p class="contact">📩 studionfxcreatice@gmail.com</p>
+
+    <div class="social-links">
+      <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-telegram"></i></a>
+    </div>
+
+    <p class="copy">© 2025 studionfx — All rights reserved</p>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      function animateOnScroll() {
+        document.querySelectorAll(".video-sec, .lt").forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 120 && rect.bottom > 120) {
+            el.classList.add("show");
+            el.classList.remove("hide");
+          } else {
+            el.classList.add("hide");
+            el.classList.remove("show");
+          }
+        });
+      }
+
+      document.addEventListener("scroll", animateOnScroll);
+      animateOnScroll();
+
+      const playBtn = document.getElementById("play-btn");
+      const video = document.getElementById("exclusive-video");
+
+      if (playBtn && video) {
+        playBtn.addEventListener("click", () => {
+          video.muted = false;
+          video.play();
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

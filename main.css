@@ -19,13 +19,19 @@ body::before {
   -webkit-backdrop-filter:blur(12px);
 }
 
-/* HERO SECTION */
+/* HERO TITLE (FONT RESET + PERFECT LOOK) */
 #p1 {
-  font-size:80px;
-  line-height:85px;
+  font-family:'Poppins', sans-serif;
   font-weight:700;
-  font-family:Poppins;
+  font-size:85px;
+  line-height:86px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#fff;
+  text-shadow:0 0 12px rgba(255, 0, 0, 0.22);
 }
+
+/* HERO IMAGE */
 #hero-img {
   max-width:650px;
   border:2px solid rgba(255,255,255,.15);
@@ -68,7 +74,7 @@ body::before {
   box-shadow:0 0 18px rgba(255,0,0,0.25);
 }
 
-/* CUSTOM BUTTON STYLE */
+/* BRAND BUTTON STYLE (radius 6px, #D00000) */
 .btn {
   background:#D00000 !important;
   border:2px solid #D00000 !important;
@@ -78,14 +84,14 @@ body::before {
   position:relative;
   overflow:hidden;
   color:white !important;
-  transition:0.25s;
+  transition:.25s;
 }
 .btn:hover {
   background:black !important;
   border-color:black !important;
 }
 
-/* Outline button (Spotify) */
+/* Outline button */
 .btn-outline {
   background:#111 !important;
   color:#D00000 !important;
@@ -97,7 +103,7 @@ body::before {
   color:white !important;
 }
 
-/* Shine animation on hover */
+/* Shine hover effect */
 .btn::after {
   content:"";
   position:absolute;
@@ -114,6 +120,8 @@ body::before {
   100% { left:120%; }
 }
 
-/* RESPONSIVE */
-@media (max-width:992px) { #p1 { font-size:60px; line-height:65px; } }
-@media (max-width:576px) { #p1 { font-size:46px; line-height:52px; } }
+/* RESPONSIVE HERO */
+@media (max-width:992px) { #p1 { font-size:65px; line-height:70px; } }
+@media (max-width:768px) { #p1 { font-size:55px; line-height:60px; } }
+@media (max-width:576px) { #p1 { font-size:44px; line-height:50px; } }
+@media (max-width:420px) { #p1 { font-size:37px; line-height:42px; } }

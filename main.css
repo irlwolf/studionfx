@@ -76,14 +76,14 @@ body::before {
 
 /* BRAND BUTTON STYLE (radius 6px, #D00000) */
 .btn {
-  background:#D00000 !important;
-  border:2px solid #D00000 !important;
+  background:#f8f8ff !important;
+  border:2px solid #f8f8ff !important;
   border-radius:6px !important;
   font-weight:600;
   padding:12px 24px;
   position:relative;
   overflow:hidden;
-  color:white !important;
+  color:#D00000 !important;
   transition:.25s;
 }
 .btn:hover {
@@ -125,6 +125,7 @@ body::before {
 @media (max-width:768px) { #p1 { font-size:55px; line-height:60px; } }
 @media (max-width:576px) { #p1 { font-size:44px; line-height:50px; } }
 @media (max-width:420px) { #p1 { font-size:37px; line-height:42px; } }
+
 
 
 

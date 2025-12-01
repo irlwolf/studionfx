@@ -63,8 +63,8 @@ body::before {
 #hero-img {
   width:650px;                     /* 🔥 bigger image size */
   border-radius:14px;
-  border:2px solid rgba(255,255,255,0.13);
-  box-shadow:0 0 40px rgba(255,0,0,0.18);
+  /* border:2px solid rgba(255,255,255,0.13);
+  box-shadow:0 0 40px rgba(255,0,0,0.18); */
 }
 
 /* Mobile responsive hero */
@@ -267,3 +267,4 @@ body::before {
   0% { left:-100%; }
   100% { left:120%; }
 }
+

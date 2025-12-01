@@ -15,7 +15,7 @@
 
 <body>
 
-  <!-- HEADER / NAV -->
+  <!-- HEADER -->
   <div id="header">
     <h1>studionfx</h1>
     <div id="nav">
@@ -32,7 +32,7 @@
       <p id="p1">GET<br>YOUR<br>FREE<br>PRESETS</p>
     </div>
     <div class="hero-media">
-      <img id="hero-img" src="vijay.jpg" alt="main-preset-img">
+      <img id="hero-img" src="vijay.jpg" alt="main-image">
     </div>
   </section>
 
@@ -48,7 +48,7 @@
         </div>
 
         <video id="exclusive-video" autoplay loop muted playsinline>
-          <source src="ezgif-38f91e4b22e0ba.mp4" type="video/mp4">
+          <source src="exclusive.mp4" type="video/mp4">
         </video>
       </div>
     </div>
@@ -56,12 +56,10 @@
     <p id="vs-cap">Scene Maari Pochey – Official Edit Preview</p>
 
     <div class="exclusive-actions">
-      <button id="play-btn" class="btn primary" type="button">▶ Watch Now on YouTube</button>
+      <button id="play-btn" class="btn primary" type="button">▶ Unmute & Play</button>
       <a href="https://open.spotify.com/track/0ZzcM0oWkusgpLHx40BQmA"
-         class="btn outline"
-         target="_blank"
-         rel="noopener">
-        Listen On Spotify
+         class="btn outline" target="_blank" rel="noopener">
+         Listen on Spotify
       </a>
     </div>
   </section>
@@ -70,41 +68,38 @@
   <section class="lt">
     <p id="p3">Latest Works</p>
     <div class="i1">
-      <img src="6.png" alt="latest work 1">
-      <img src="7.jpg" alt="latest work 2">
-      <img src="8.jpg" alt="latest work 3">
-      <img src="9.jpg" alt="latest work 4">
+      <img src="6.png">
+      <img src="7.jpg">
+      <img src="8.jpg">
+      <img src="9.jpg">
     </div>
 
-    <img id="brand-img" src="stdnfx.png" alt="studionfx brand">
-    
-    <!-- <div class="latest-actions">
-      <a id="latest-watch"
-         class="btn primary"
+    <img id="brand-img" src="stdnfx.png" alt="studionfx logo">
+
+    <div class="latest-actions">
+      <a class="btn primary"
          href="https://youtu.be/afXeMJU7lm4?si=555QI9MAhQRBLnAC"
-         target="_blank"
-         rel="noopener">
+         target="_blank" rel="noopener">
         ▶ Watch on YouTube
       </a>
-    </div> -->
+    </div>
   </section>
 
   <!-- FOOTER -->
   <div id="footer">
     <p class="contact">📩 studionfxcreatice@gmail.com</p>
-
     <div class="social-links">
       <a href="#"><i class="fa-brands fa-youtube"></i></a>
       <a href="#"><i class="fa-brands fa-instagram"></i></a>
       <a href="#"><i class="fa-brands fa-telegram"></i></a>
     </div>
-
     <p class="copy">© 2025 studionfx — All rights reserved</p>
   </div>
 
   <!-- SCRIPT -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // scroll animations
       function animateOnScroll() {
         document.querySelectorAll(".video-sec, .lt").forEach(el => {
           const rect = el.getBoundingClientRect();
@@ -117,17 +112,16 @@
           }
         });
       }
-
       document.addEventListener("scroll", animateOnScroll);
       animateOnScroll();
 
-      const playBtn = document.getElementById("play-btn");
-      const video = document.getElementById("exclusive-video");
-
-      if (playBtn && video) {
-        playBtn.addEventListener("click", () => {
-          video.muted = false;
-          video.play();
+      // play with sound
+      const btn = document.getElementById("play-btn");
+      const vid = document.getElementById("exclusive-video");
+      if (btn && vid) {
+        btn.addEventListener("click", () => {
+          vid.muted = false;
+          vid.play();
         });
       }
     });
@@ -135,4 +129,3 @@
 
 </body>
 </html>
-

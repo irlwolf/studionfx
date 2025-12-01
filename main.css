@@ -156,14 +156,18 @@ body::before {
 }
 
 .i1 img {
-  width:280px;
-  height:210px;
-  border-radius:10px;
-  object-fit:cover;
-  margin:12px;
-  transition:0.3s;
+  width: 280px;
+  height: 350px;       /* 4:5 ratio fixed */
+  aspect-ratio: 4 / 5; /* keeps ratio even if width changes later */
+  border-radius: 10px;
+  object-fit: cover;
+  margin: 12px;
+  transition: 0.3s;
 }
-.i1 img:hover { transform:scale(1.04); }
+.i1 img:hover {
+  transform: scale(1.04);
+}
+
 
 /* ───────── FOOTER GLASS ───────── */
 #footer {
@@ -182,3 +186,4 @@ body::before {
 
 /* Shine Animation */
 @keyframes shine { 0%{left:-100%;} 100%{left:120%;} }
+

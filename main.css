@@ -51,23 +51,33 @@ body::before {
   border-radius:999px;
 }
 
-/* LATEST WORK IMAGES */
+/* LATEST IMAGE HOVER ANIMATION (SUPER SMOOTH) */
 .latest-img {
-  aspect-ratio:1080/1350;
-  width:100%;
-  object-fit:cover;
-  border-radius:10px;
-  transition:.3s;
+  aspect-ratio: 1080 / 1350;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform .45s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              filter .45s ease;
+  will-change: transform;
+}
+
+.latest-img:hover {
+  transform: scale(1.06);
+  filter: brightness(1.07);
 }
 .latest-img:hover {
-  transform:scale(1.05);
+  transform: scale(1.06);
+  filter: brightness(1.07);
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.25);
 }
+
 
 /* Responsive improvements */
 @media (max-width:992px) { #p1 { font-size:60px; line-height:65px; } }
 @media (max-width:576px) { #p1 { font-size:46px; line-height:52px; } }
 /* ---- FIX CUSTOM BUTTON STYLE ---- */
-.btn {
+/* .btn {
   background: #D00000 !important;
   border: 2px solid #D00000 !important;
   border-radius: 6px !important; /* 4–7px perfect */
@@ -116,3 +126,4 @@ body::before {
   100% { left: 120%; }
 }
 
+ */

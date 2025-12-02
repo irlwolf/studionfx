@@ -165,11 +165,11 @@ body::before {
   padding: 12px 24px;
   transition: .25s;
 }
-.btn:hover {
+/* .btn:hover {
   background: #D00000 !important;
   border-color: #D00000 !important;
   color: white !important;
-}
+} */
 
 /* Pill style for primary */
 .hero-btn {
@@ -345,4 +345,5 @@ body::before {
 .reveal.delay-1 { transition-delay: .15s; }
 .reveal.delay-2 { transition-delay: .3s; }
 .reveal.delay-3 { transition-delay: .45s; }
+
 

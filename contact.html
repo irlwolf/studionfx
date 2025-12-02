@@ -9,128 +9,228 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="main.css">
+
+  <style>
+    /* POPUP */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: .35s;
+      z-index: 99999;
+      backdrop-filter: blur(4px);
+    }
+    .popup-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .popup-box {
+      background: #111;
+      border-radius: 16px;
+      padding: 28px 40px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.12);
+      animation: zoomIn .3s ease;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(.85); opacity:0; }
+      to   { transform: scale(1); opacity:1; }
+    }
+    /* Blur page when popup visible */
+    .blur-page {
+      filter: blur(4px);
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- PRELOADER -->
-  <div class="preloader">
-    <div class="preloader-inner">
-      <div class="loader-circle"></div>
-      <p>studionfx</p>
-    </div>
-  </div>
+  <!-- PAGE WRAPPER FOR BLUR -->
+  <div id="fullPage">
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-50 fixed-top backdrop-blur">
-    <div class="container">
-      <a class="navbar-brand fw-bold fs-3" href="index.html">studionfx</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse text-center" id="navMenu">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
-        </ul>
+    <!-- PRELOADER -->
+    <div class="preloader">
+      <div class="preloader-inner">
+        <div class="loader-circle"></div>
+        <p>studionfx</p>
       </div>
     </div>
-  </nav>
 
-  <!-- CONTACT HERO -->
-  <section class="page-hero text-center text-light d-flex align-items-center">
-    <div class="container">
-      <div class="reveal">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-50 fixed-top backdrop-blur">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="index.html">studionfx</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navMenu">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTACT HERO -->
+    <section class="page-hero text-center text-light d-flex align-items-center">
+      <div class="container">
         <h1 class="page-title">Let’s work together</h1>
         <p class="page-subtitle">
           Share your song, idea or project — we’ll craft the visuals.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT FORM -->
-  <section class="py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-7 reveal">
-          <div class="contact-card">
+    <!-- CONTACT FORM -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="contact-card">
 
-            <h2 class="section-title text-start mb-3">Contact Form</h2>
+              <h2 class="section-title text-start mb-3">Contact Form</h2>
 
-            <form action="https://api.web3forms.com/submit" method="POST">
-              <!-- REQUIRED (web3forms) -->
-              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+              <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 
-              <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input type="text" name="name" class="form-control form-control-dark" placeholder="Your name" required>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" name="name" class="form-control form-control-dark" required>
+                </div>
 
-              <div class="mb-3">
-                <label class="form-label">Phone Number</label>
-                <input type="tel" name="phone" class="form-control form-control-dark" placeholder="Your phone number" required>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" name="phone" class="form-control form-control-dark" required>
+                </div>
 
-              <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" name="email" class="form-control form-control-dark" placeholder="your@email.com" required>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" name="email" class="form-control form-control-dark" required>
+                </div>
 
-              <div class="mb-3">
-                <label class="form-label">Project Type</label>
-                <select name="project_type" class="form-select form-control-dark" required>
-                  <option selected disabled>Select your project type</option>
-                  <option>Lyrical video</option>
-                  <option>Thumbnail pack</option>
-                  <option>Album art / cover</option>
-                  <option>Motion poster</option>
-                  <option>Logo animation</option>
-                  <option>Other</option>
-                </select>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label">Project Type</label>
+                  <select name="project_type" class="form-select form-control-dark" required>
+                    <option disabled selected>Select your project</option>
+                    <option>Lyrical video</option>
+                    <option>Thumbnail pack</option>
+                    <option>Album art / cover</option>
+                    <option>Motion poster</option>
+                    <option>Logo animation</option>
+                    <option>Other</option>
+                  </select>
+                </div>
 
-              <div class="mb-3">
-                <label class="form-label">Message</label>
-                <textarea rows="4" name="message" class="form-control form-control-dark" placeholder="Tell us about your project..." required></textarea>
-              </div>
+                <div class="mb-3">
+                  <label class="form-label">Message</label>
+                  <textarea rows="4" name="message" class="form-control form-control-dark" required></textarea>
+                </div>
 
-              <!-- Redirect on success (optional) -->
-              <input type="hidden" name="redirect" value="success.html">
+                <button type="submit" class="btn hero-btn w-100">Send Request</button>
+              </form>
 
-              <button type="submit" class="btn hero-btn w-100">Send Request</button>
-            </form>
-
+            </div>
           </div>
-        </div>
 
-        <!-- SIDE INFO -->
-        <div class="col-lg-4 mt-4 mt-lg-0 reveal delay-1">
-          <div class="contact-side">
-            <h5>Direct contact</h5>
-            <p class="mb-1">📩 studionfxcreatice@gmail.com</p>
-            <p class="mb-3">📸 Instagram: @studionfx</p>
-            <h5>Response time</h5>
-            <p class="mb-0">Usually within 24 hours.</p>
+          <!-- SIDE INFO -->
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="contact-side">
+              <h5>Direct contact</h5>
+              <p class="mb-1">📩 studionfxcreatice@gmail.com</p>
+              <p class="mb-3">📸 Instagram: @studionfx</p>
+              <h5>Response time</h5>
+              <p class="mb-0">Usually within 24 hours.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="text-center text-white py-4 bg-dark bg-opacity-50 backdrop-blur mt-5">
-    <p class="mb-2 fs-5">📩 studionfxcreatice@gmail.com</p>
-    <div class="d-flex justify-content-center gap-4 fs-3 mb-3">
-      <a href="#" class="text-white"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://www.instagram.com/studionfx" target="_blank" class="text-white"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" class="text-white"><i class="fa-brands fa-telegram"></i></a>
+    <!-- FOOTER -->
+    <footer class="text-center text-white py-4 bg-dark bg-opacity-50 backdrop-blur mt-5">
+      <p class="mb-2 fs-5">📩 studionfxcreatice@gmail.com</p>
+      <div class="d-flex justify-content-center gap-4 fs-3 mb-3">
+        <a href="#" class="text-white"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.instagram.com/studionfx" target="_blank" class="text-white"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="text-white"><i class="fa-brands fa-telegram"></i></a>
+      </div>
+      <p class="opacity-75 mb-0">© 2025 studionfx — All rights reserved</p>
+    </footer>
+
+  </div> <!-- END PAGE WRAPPER -->
+
+  <!-- POPUP -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <h2>Request Sent 🎉</h2>
+      <p>Thank you for contacting us — we'll reply soon.</p>
+      <button id="popupClose" class="btn hero-btn mt-3">OK</button>
     </div>
-    <p class="opacity-75 mb-0">© 2025 studionfx — All rights reserved</p>
-  </footer>
+  </div>
+
+  <!-- CONFETTI JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <audio id="popupDing" src="ding.mp3" preload="auto"></audio>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const popup = document.getElementById("popupOverlay");
+    const popupClose = document.getElementById("popupClose");
+    const fullPage = document.getElementById("fullPage");
+    const ding = document.getElementById("popupDing");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(form.action, { method: "POST", body: formData })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            popup.classList.add("active");
+            fullPage.classList.add("blur-page");
+            form.reset();
+
+            // play sound
+            ding.play();
+
+            // confetti
+            confetti({
+              particleCount: 200,
+              spread: 120,
+              origin: { y: 0.7 }
+            });
+
+            // auto close after 2.3 sec
+            setTimeout(() => {
+              popup.classList.remove("active");
+              fullPage.classList.remove("blur-page");
+            }, 2300);
+          }
+        })
+        .catch(() => alert("Network error — please try again later."));
+    });
+
+    popupClose.addEventListener("click", () => {
+      popup.classList.remove("active");
+      fullPage.classList.remove("blur-page");
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="main.js"></script>
+
 </body>
 </html>

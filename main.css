@@ -19,24 +19,44 @@ body::before {
   -webkit-backdrop-filter:blur(12px);
 }
 
-/* HERO TITLE (FONT RESET + PERFECT LOOK) */
-#p1 {
+/* HERO Style */
+.hero-sec {
+  min-height:100vh;
+  padding-top:140px;
+}
+.hero-title {
   font-family:'Poppins', sans-serif;
   font-weight:700;
   font-size:85px;
   line-height:86px;
   text-transform:uppercase;
   letter-spacing:1px;
-  color:#fff;
-  /* text-shadow:0 0 12px rgba(255, 0, 0, 0.22); */
+}
+.hero-title span {
+  font-weight:800;
+}
+.hero-desc {
+  font-size:20px;
+  margin:20px 0;
+}
+.hero-btn {
+  padding:15px 45px;
+  background:#fff;
+  border-radius:40px;
+  color:#111;
+  font-weight:600;
+  transition:.3s;
+}
+.hero-btn:hover { letter-spacing:2px; }
+.hero-image {
+  max-width:550px;
+  border-radius:14px;
 }
 
 /* HERO IMAGE */
 #hero-img {
   max-width:650px;
-  /* border:2px solid rgba(255,255,255,.15); */
   border-radius:14px;
-  /* box-shadow:0 0 40px rgba(255,0,0,0.18); */
 }
 
 /* VIDEO BADGE */
@@ -63,10 +83,7 @@ body::before {
   width:100%;
   object-fit:cover;
   border-radius:10px;
-  transition:transform .45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-             filter .45s ease,
-             box-shadow .45s ease;
-  will-change:transform;
+  transition:transform .45s, filter .45s, box-shadow .45s;
 }
 .latest-img:hover {
   transform:scale(1.06);
@@ -74,29 +91,24 @@ body::before {
   box-shadow:0 0 18px rgba(255,0,0,0.55);
 }
 
-/* BRAND BUTTON STYLE (radius 6px, #D00000) */
+/* BRAND BUTTON STYLE */
 .btn {
   background:#f8f8ff !important;
   border:2px solid #f8f8ff !important;
   border-radius:6px !important;
   font-weight:600;
   padding:12px 24px;
+  color:#D00000 !important;
   position:relative;
   overflow:hidden;
-  color:#D00000 !important;
-  transition:.25s;
 }
-.btn:hover {
-  background:#D00000 !important;
-  border-color:#f8f8ff !important;
-}
+.btn:hover { background:#D00000 !important; border-color:#f8f8ff !important; color:white !important; }
 
 /* Outline button */
 .btn-outline {
   background:#111 !important;
   color:#32cd32 !important;
   border:2px solid #111 !important;
-  border-radius:6px !important;
 }
 .btn-outline:hover {
   background:#32cd32 !important;
@@ -109,24 +121,16 @@ body::before {
   position:absolute;
   inset:0;
   left:-100%;
-  /* background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.4) 50%, transparent 100%); */
   transform:skewX(-25deg);
 }
-.btn:hover::after {
-  animation:shine 5s;
-}
+.btn:hover::after { animation:shine 5s; }
 @keyframes shine {
-  0% { left:-100%; }
-  100% { left:120%; }
+  from { left:-100%; }
+  to { left:120%; }
 }
 
 /* RESPONSIVE HERO */
-@media (max-width:992px) { #p1 { font-size:65px; line-height:70px; } }
-@media (max-width:768px) { #p1 { font-size:55px; line-height:60px; } }
-@media (max-width:576px) { #p1 { font-size:44px; line-height:50px; } }
-@media (max-width:420px) { #p1 { font-size:37px; line-height:42px; } }
-
-
-
-
-
+@media (max-width:992px) { .hero-title { font-size:65px; line-height:70px; } }
+@media (max-width:768px) { .hero-title { font-size:55px; line-height:60px; } }
+@media (max-width:576px) { .hero-title { font-size:44px; line-height:50px; } }
+@media (max-width:420px) { .hero-title { font-size:37px; line-height:42px; } }

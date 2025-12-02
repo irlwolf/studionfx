@@ -1,14 +1,10 @@
-// 🔥 GLOBAL PRELOADER (works on all pages)
+// 🔥 GLOBAL PRELOADER
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
-  if (preloader) {
-    setTimeout(() => {
-      preloader.classList.add("hide");
-    }, 300); // delay for smooth feel
-  }
+  if (preloader) setTimeout(() => preloader.classList.add("hide"), 300);
 });
 
-// 🔥 SCROLL REVEAL (keeps animation on all pages if used)
+// 🔥 SCROLL REVEAL ANIMATIONS
 const revealElements = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window && revealElements.length) {
   const observer = new IntersectionObserver((entries) => {
@@ -19,10 +15,11 @@ if ("IntersectionObserver" in window && revealElements.length) {
       }
     });
   }, { threshold: 0.2 });
+
   revealElements.forEach((el) => observer.observe(el));
 }
 
-// 🔥 CONTACT FORM POPUP + CONFETTI (only runs if the form exists)
+// 🔥 CONTACT POPUP + CONFETTI + SOUND
 const form = document.getElementById("contactForm");
 const popup = document.getElementById("popupOverlay");
 const popupClose = document.getElementById("popupClose");
@@ -43,13 +40,7 @@ if (form) {
           form.reset();
 
           if (ding) ding.play();
-          if (window.confetti) {
-            confetti({
-              particleCount: 180,
-              spread: 140,
-              origin: { y: 0.7 }
-            });
-          }
+          if (window.confetti) confetti({ particleCount: 180, spread: 140, origin: { y: 0.7 } });
 
           setTimeout(() => {
             popup.classList.remove("active");
@@ -57,7 +48,7 @@ if (form) {
           }, 2300);
         }
       })
-      .catch(() => alert("Network error — please try again later."));
+      .catch(() => alert("Network error — try later"));
   });
 }
 
@@ -66,4 +57,48 @@ if (popupClose) {
     popup.classList.remove("active");
     fullPage.classList.remove("blur-page");
   });
+}
+
+// 🔥 PROJECT PAGE AUTO SLIDER
+const slider = document.querySelector("[data-slider]");
+if (slider) {
+  const slides = slider.querySelectorAll(".project-slide");
+  const dotsContainer = slider.closest(".project-slider-wrapper").querySelector("[data-dots]");
+  const prevBtn = slider.closest(".project-slider-wrapper").querySelector("[data-prev]");
+  const nextBtn = slider.closest(".project-slider-wrapper").querySelector("[data-next]");
+  let current = 0;
+  let interval;
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement("div");
+    dot.classList.add("slider-dot");
+    if (index === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll(".slider-dot");
+
+  const goToSlide = (i) => {
+    slides[current].classList.remove("active");
+    dots[current].classList.remove("active");
+    current = (i + slides.length) % slides.length;
+    slides[current].classList.add("active");
+    dots[current].classList.add("active");
+  };
+
+  const next = () => goToSlide(current + 1);
+  const prev = () => goToSlide(current - 1);
+
+  if (nextBtn) nextBtn.addEventListener("click", next);
+  if (prevBtn) prevBtn.addEventListener("click", prev);
+
+  const startAuto = () => (interval = setInterval(next, 4000));
+  const stopAuto = () => clearInterval(interval);
+
+  slider.addEventListener("mouseenter", stopAuto);
+  slider.addEventListener("mouseleave", startAuto);
+
+  slides[0].classList.add("active");
+  startAuto();
 }

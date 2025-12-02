@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
+
   <!-- PRELOADER -->
   <div class="preloader">
     <div class="preloader-inner">
@@ -55,41 +56,63 @@
       <div class="row justify-content-center">
         <div class="col-lg-7 reveal">
           <div class="contact-card">
-            <h2 class="section-title text-start mb-3">Contact form</h2>
-            <form>
+
+            <h2 class="section-title text-start mb-3">Contact Form</h2>
+
+            <form action="https://api.web3forms.com/submit" method="POST">
+              <!-- REQUIRED (web3forms) -->
+              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
               <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control form-control-dark" placeholder="Your name">
+                <input type="text" name="name" class="form-control form-control-dark" placeholder="Your name" required>
               </div>
+
+              <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" name="phone" class="form-control form-control-dark" placeholder="Your phone number" required>
+              </div>
+
               <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control form-control-dark" placeholder="your@email.com">
+                <input type="email" name="email" class="form-control form-control-dark" placeholder="your@email.com" required>
               </div>
+
               <div class="mb-3">
                 <label class="form-label">Project Type</label>
-                <select class="form-select form-control-dark">
+                <select name="project_type" class="form-select form-control-dark" required>
+                  <option selected disabled>Select your project type</option>
                   <option>Lyrical video</option>
                   <option>Thumbnail pack</option>
                   <option>Album art / cover</option>
+                  <option>Motion poster</option>
                   <option>Logo animation</option>
                   <option>Other</option>
                 </select>
               </div>
+
               <div class="mb-3">
                 <label class="form-label">Message</label>
-                <textarea rows="4" class="form-control form-control-dark" placeholder="Tell us about your project..."></textarea>
+                <textarea rows="4" name="message" class="form-control form-control-dark" placeholder="Tell us about your project..." required></textarea>
               </div>
+
+              <!-- Redirect on success (optional) -->
+              <input type="hidden" name="redirect" value="success.html">
+
               <button type="submit" class="btn hero-btn w-100">Send Request</button>
             </form>
+
           </div>
         </div>
+
+        <!-- SIDE INFO -->
         <div class="col-lg-4 mt-4 mt-lg-0 reveal delay-1">
           <div class="contact-side">
             <h5>Direct contact</h5>
             <p class="mb-1">📩 studionfxcreatice@gmail.com</p>
             <p class="mb-3">📸 Instagram: @studionfx</p>
-            <h5>Typical response</h5>
-            <p class="mb-0">Within 24 hours for most enquiries.</p>
+            <h5>Response time</h5>
+            <p class="mb-0">Usually within 24 hours.</p>
           </div>
         </div>
       </div>

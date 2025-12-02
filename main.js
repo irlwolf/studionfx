@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (preloader) {
     setTimeout(() => {
       preloader.classList.add("hide");
-    }, 2600); // match CSS animation duration
+    }, 2600); // matches CSS animation
   }
 });
 
@@ -22,7 +22,6 @@ if ("IntersectionObserver" in window && revealElements.length) {
     },
     { threshold: 0.2 }
   );
-
   revealElements.forEach(el => observer.observe(el));
 } else {
   revealElements.forEach(el => el.classList.add("in-view"));
@@ -87,7 +86,6 @@ if (slider) {
   let current = 0;
   let intervalId;
 
-  // create dots
   slides.forEach((_, index) => {
     const dot = document.createElement("div");
     dot.classList.add("slider-dot");

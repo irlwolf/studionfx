@@ -13,15 +13,44 @@ body {
 }
 
 /* Background image behind all pages */
+/* body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("gargantua-black-5200x3250-9621.jpg") center/cover no-repeat;
+  opacity: .18;
+  filter: blur(2px);
+  z-index: -1;
+} */
+/* ===== BACKGROUND VIDEO ===== */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.45; /* brightness control */
+  filter: blur(0px);
+  transition: filter 0.35s ease;
+}
+
+/* Dark layer on video for readability */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  /* background: url("gargantua-black-5200x3250-9621.jpg") center/cover no-repeat; */
-  opacity: .18;
-  filter: blur(2px);
+  background: radial-gradient(circle at top, #1f1f1f 0%, #0b0b0b 55%, #050505 100%);
+  opacity: .55;
   z-index: -1;
 }
+
+/* Blur added on scroll */
+.bg-video.blur {
+  filter: blur(8px);
+}
+
 
 /* Blur helper for popup */
 .blur-page {
@@ -363,6 +392,7 @@ body::before {
 .hero-video:hover {
   filter: brightness(1.08);
 }
+
 
 
 

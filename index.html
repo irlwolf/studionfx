@@ -19,7 +19,6 @@
 
   <!-- PAGE WRAPPER -->
   <div id="fullPage">
-
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-50 fixed-top backdrop-blur">
       <div class="container">
@@ -40,19 +39,22 @@
       </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero-sec d-flex align-items-center text-light">
+    <!-- HERO (centered text + image stacked) -->
+    <section class="hero-sec text-light">
       <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6 mb-4 mb-lg-0 reveal">
+        <div class="row justify-content-center">
+          <div class="col-12 reveal">
             <h1 class="hero-title">Studion Fx<br>We <span>Creates</span></h1>
             <p class="hero-desc">
               Lyrical Videos • Album Art • Thumbnails • Posters • Logo Animation
             </p>
-            <a href="projects.html" class="btn hero-btn me-2">View Projects</a>
-            <a href="contact.html" class="btn btn-outline">Book a Project</a>
+            <div class="d-flex justify-content-center gap-2 flex-wrap">
+              <a href="projects.html" class="btn hero-btn">View Projects</a>
+              <a href="contact.html" class="btn btn-outline">Book a Project</a>
+            </div>
           </div>
-          <div class="col-lg-6 text-center reveal delay-1">
+
+          <div class="col-12 hero-image-wrapper d-flex justify-content-center reveal delay-1">
             <img id="hero-img" src="vijay.jpg" class="hero-image img-fluid shadow-lg" alt="Hero">
           </div>
         </div>
@@ -64,16 +66,16 @@
       <div class="container">
         <h2 class="section-title reveal">Latest Works</h2>
         <div class="row justify-content-center mt-4">
-          <div class="col-6 col-md-4 col-lg-3 p-2 reveal">
+          <div class="col-6 col-md-3 p-2 reveal">
             <img src="6.png" class="latest-img" alt="">
           </div>
-          <div class="col-6 col-md-4 col-lg-3 p-2 reveal delay-1">
+          <div class="col-6 col-md-3 p-2 reveal delay-1">
             <img src="7.jpg" class="latest-img" alt="">
           </div>
-          <div class="col-6 col-md-4 col-lg-3 p-2 reveal delay-2">
+          <div class="col-6 col-md-3 p-2 reveal delay-2">
             <img src="8.jpg" class="latest-img" alt="">
           </div>
-          <div class="col-6 col-md-4 col-lg-3 p-2 reveal delay-3">
+          <div class="col-6 col-md-3 p-2 reveal delay-3">
             <img src="9.jpg" class="latest-img" alt="">
           </div>
         </div>
@@ -90,7 +92,6 @@
       </div>
       <p class="opacity-75 mb-0">© 2025 studionfx — All rights reserved</p>
     </footer>
-
   </div>
 
   <!-- JS -->

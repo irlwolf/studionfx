@@ -7,6 +7,16 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 2600); // match CSS animation duration
   }
 });
+// Background video blur on scroll
+const bgVideo = document.querySelector('.bg-video');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    bgVideo.classList.add('blur');
+  } else {
+    bgVideo.classList.remove('blur');
+  }
+});
 
 // 🔥 SCROLL REVEAL
 const revealElements = document.querySelectorAll(".reveal");

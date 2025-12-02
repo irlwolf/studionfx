@@ -159,21 +159,20 @@ body {
 
 /* ========== BUTTONS ========== */
 .btn {
-  background: #f8f8ff !important;
-  border: 2px solid #f8f8ff !important;
+  background: transparent !important;
+  /* border: 2px solid #f8f8ff !important; */
   border-radius: 6px !important;
   font-weight: 600;
   padding: 12px 24px;
   position: relative;
   overflow: hidden;
-  color: #D00000 !important;
+  color: #111 !important;
   transition: 0.25s;
 }
 
 .btn:hover {
   background: #D00000 !important;
-  border-color: #f8f8ff !important;
-  color: #fff !important;
+  color: #111 !important;
 }
 
 /* Hero primary */
@@ -184,12 +183,12 @@ body {
 /* Outline button */
 .btn-outline {
   background: transparent !important;
-  color: #32cd32 !important;
-  border: 2px solid #32cd32 !important;
+  color: #111 !important;
+  /* border: 2px solid #32cd32 !important; */
 }
 
 .btn-outline:hover {
-  background: #32cd32 !important;
+  background: #D00000 !important;
   color: #111 !important;
 }
 
@@ -426,4 +425,5 @@ body {
 .reveal.delay-1 { transition-delay: 0.15s; }
 .reveal.delay-2 { transition-delay: 0.3s; }
 .reveal.delay-3 { transition-delay: 0.45s; }
+
 

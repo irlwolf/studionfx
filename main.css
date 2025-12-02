@@ -226,7 +226,7 @@ body {
 .latest-img:hover {
   transform: scale(1.06);
   filter: brightness(1.07);
-  box-shadow: 0 0 18px rgba(255, 0, 0, 0.55);
+  /* box-shadow: 0 0 18px rgba(255, 0, 0, 0.55); */
 }
 
 /* ========== INNER PAGE HERO ========== */
@@ -426,3 +426,4 @@ body {
 .reveal.delay-1 { transition-delay: 0.15s; }
 .reveal.delay-2 { transition-delay: 0.3s; }
 .reveal.delay-3 { transition-delay: 0.45s; }
+

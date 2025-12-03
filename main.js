@@ -1,5 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  const preloader = document.getElementById("preloader");
+  setTimeout(() => preloader?.classList.add("hide"), 2600);
+
+  const bgVideo = document.querySelector(".bg-video");
+  window.addEventListener("scroll", () => {
+    if (bgVideo) {
+      if (window.scrollY > 80) bgVideo.classList.add("blur");
+      else bgVideo.classList.remove("blur");
+    }
+  });
+
   /* ===== PRELOADER ===== */
   const preloader = document.getElementById("preloader");
   if (preloader) {

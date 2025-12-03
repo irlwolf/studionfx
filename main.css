@@ -193,6 +193,9 @@ body::before {
   font-weight: 600;
   padding: 12px 24px;
   transition: .25s;
+  position: relative;
+  overflow: hidden;
+
 }
 /* .btn:hover {
   background: #D00000 !important;
@@ -224,6 +227,8 @@ body::before {
   inset: 0;
   left: -120%;
   transform: skewX(-25deg);
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+
 }
 .btn:hover::after {
   animation: shine 4.5s linear;
@@ -451,4 +456,5 @@ body::before {
   overflow: hidden;
   max-width: 900px;
 }
+
 

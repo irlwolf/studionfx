@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   /* ===== PRELOADER ===== */
   const preloader = document.getElementById("preloader");
   if (preloader) {
@@ -12,16 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.scrollY > 80) bgVideo.classList.add("blur");
       else bgVideo.classList.remove("blur");
     };
-
     window.addEventListener("scroll", handleBlur);
-    handleBlur(); // initial check
+    handleBlur();
   }
 
-  /* ===== EXCLUSIVE AUTO SLIDER (HOME ONLY) ===== */
+  /* ===== EXCLUSIVE IMAGE AUTO SLIDER ===== */
   const exSlides = document.querySelectorAll(".exclusive-slide");
   if (exSlides.length > 0) {
     let exIndex = 0;
-
     setInterval(() => {
       exSlides[exIndex].classList.remove("active");
       exIndex = (exIndex + 1) % exSlides.length;
@@ -29,37 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3500);
   }
 
-  /* ===== PLAY EXCLUSIVE VIDEO ON SAME PAGE ===== */
+  /* ===== PLAY VIDEO ON SAME PAGE ===== */
   const playBtn = document.getElementById("playYT");
   const mainVideo = document.getElementById("exclusiveVideoMain");
-
   if (playBtn && mainVideo) {
     playBtn.addEventListener("click", () => {
-      // show video if hidden
-      if (!mainVideo.style.display || mainVideo.style.display === "none") {
-        mainVideo.style.display = "block";
-      }
-
+      mainVideo.style.display = "block";
       mainVideo.play();
-      // optional: smooth scroll to video
       mainVideo.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   }
 
   /* ===== SCROLL REVEAL ===== */
   const revealElements = document.querySelectorAll(".reveal");
-
   const handleReveal = () => {
     revealElements.forEach(el => {
-      const pos = el.getBoundingClientRect().top;
-      if (pos < window.innerHeight * 0.88) {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.88) {
         el.classList.add("in-view");
       }
     });
   };
-
   window.addEventListener("scroll", handleReveal);
-  handleReveal(); // run once on load
+  handleReveal();
 
   /* ===== CONTACT POPUP ===== */
   const form = document.getElementById("contactForm");
@@ -71,14 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form && popup && fullPage) {
     form.addEventListener("submit", e => {
       e.preventDefault();
-
       popup.classList.add("active");
       fullPage.classList.add("blur-page");
-
-      if (ding && typeof ding.play === "function") {
-        ding.play();
-      }
-
+      ding?.play();
       setTimeout(() => {
         popup.classList.remove("active");
         fullPage.classList.remove("blur-page");
@@ -104,75 +89,46 @@ document.addEventListener("DOMContentLoaded", () => {
       const prevBtn = wrapper.querySelector("[data-prev]");
       const nextBtn = wrapper.querySelector("[data-next]");
 
-      if (dotsC) {
-        let current = 0;
-        let auto;
+      let current = 0;
+      let auto;
 
-        // Create dots
-        slides.forEach((_, idx) => {
-          const dot = document.createElement("div");
-          dot.classList.add("slider-dot");
-          if (idx === 0) dot.classList.add("active");
-
-          dot.addEventListener("click", () => {
-            go(idx);
-            reset();
-          });
-
-          dotsC.appendChild(dot);
+      slides.forEach((_, idx) => {
+        const dot = document.createElement("div");
+        dot.classList.add("slider-dot");
+        if (idx === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+          go(idx);
+          reset();
         });
+        dotsC.appendChild(dot);
+      });
 
-        const dots = dotsC.querySelectorAll(".slider-dot");
+      const dots = dotsC.querySelectorAll(".slider-dot");
 
-        function go(i) {
-          slides[current].classList.remove("active");
-          dots[current].classList.remove("active");
-
-          current = (i + slides.length) % slides.length;
-
-          slides[current].classList.add("active");
-          dots[current].classList.add("active");
-        }
-
-        function next() { go(current + 1); }
-        function prev() { go(current - 1); }
-
-        function start() {
-          auto = setInterval(next, 4000);
-        }
-
-        function stop() {
-          if (auto) clearInterval(auto);
-        }
-
-        function reset() {
-          stop();
-          start();
-        }
-
-        // Buttons
-        if (prevBtn) {
-          prevBtn.addEventListener("click", () => {
-            prev();
-            reset();
-          });
-        }
-
-        if (nextBtn) {
-          nextBtn.addEventListener("click", () => {
-            next();
-            reset();
-          });
-        }
-
-        // Pause on hover
-        slider.addEventListener("mouseenter", stop);
-        slider.addEventListener("mouseleave", start);
-
-        // Init
-        slides[0].classList.add("active");
-        start();
+      function go(i) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+        current = (i + slides.length) % slides.length;
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
       }
+
+      function next() { go(current + 1); }
+      function prev() { go(current - 1); }
+
+      function start() { auto = setInterval(next, 4000); }
+      function stop() { clearInterval(auto); }
+      function reset() { stop(); start(); }
+
+      prevBtn?.addEventListener("click", () => { prev(); reset(); });
+      nextBtn?.addEventListener("click", () => { next(); reset(); });
+
+      slider.addEventListener("mouseenter", stop);
+      slider.addEventListener("mouseleave", start);
+
+      slides[0].classList.add("active");
+      start();
     }
   }
+
 });

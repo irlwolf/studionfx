@@ -1,3 +1,8 @@
+setTimeout(() => {
+  document.getElementById("preloader")?.classList.add("hide");
+}, 3000);
+
+
 /* ================= EXCLUSIVE AUTO SLIDER ================= */
 const slides = document.querySelectorAll(".exclusive-slide");
 if (slides.length > 0) {

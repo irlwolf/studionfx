@@ -1,32 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===== CINEMATIC PRELOADER ===== */
+
+  /* ===== PRELOADER ===== */
   const preloader = document.getElementById("preloader");
-  setTimeout(() => { preloader?.classList.add("hide"); }, 2600);
+  if (preloader) {
+    setTimeout(() => preloader.classList.add("hide"), 2600);
+  }
 
   /* ===== BACKGROUND VIDEO BLUR ON SCROLL ===== */
   const bgVideo = document.querySelector(".bg-video");
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 80) bgVideo?.classList.add("blur");
-    else bgVideo?.classList.remove("blur");
+    if (bgVideo) {
+      if (window.scrollY > 80) bgVideo.classList.add("blur");
+      else bgVideo.classList.remove("blur");
+    }
   });
 
   /* ===== SCROLL REVEAL ===== */
   const revealElements = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && revealElements.length) {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in-view");
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    revealElements.forEach(el => obs.observe(el));
-  } else {
-    revealElements.forEach(el => el.classList.add("in-view"));
-  }
+  revealElements.forEach(el => {
+    const position = el.getBoundingClientRect().top;
+    if (position < window.innerHeight * 0.88) el.classList.add("in-view");
+    window.addEventListener("scroll", () => {
+      const pos = el.getBoundingClientRect().top;
+      if (pos < window.innerHeight * 0.88) el.classList.add("in-view");
+    });
+  });
 
-  /* ===== EXCLUSIVE AUTO SLIDER (16:9) ===== */
+  /* ===== EXCLUSIVE AUTO SLIDER (HOME ONLY) ===== */
   const exSlides = document.querySelectorAll(".exclusive-slide");
   if (exSlides.length > 0) {
     let exIndex = 0;
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3500);
   }
 
-  /* ===== CONTACT POPUP + CONFETTI ===== */
+  /* ===== CONTACT POPUP ===== */
   const form = document.getElementById("contactForm");
   const popup = document.getElementById("popupOverlay");
   const popupClose = document.getElementById("popupClose");
@@ -47,39 +47,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form) {
     form.addEventListener("submit", e => {
       e.preventDefault();
-      const formData = new FormData(form);
+      popup.classList.add("active");
+      fullPage.classList.add("blur-page");
+      ding?.play();
 
-      fetch(form.action, { method: "POST", body: formData })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) {
-            popup.classList.add("active");
-            fullPage.classList.add("blur-page");
-            form.reset();
-
-            ding?.play();
-            window.confetti?.({
-              particleCount: 180,
-              spread: 140,
-              origin: { y: 0.7 },
-            });
-
-            setTimeout(() => {
-              popup.classList.remove("active");
-              fullPage.classList.remove("blur-page");
-            }, 2300);
-          } else {
-            alert("Something went wrong, please try again.");
-          }
-        })
-        .catch(() => alert("Network error — please try again later."));
+      setTimeout(() => {
+        popup.classList.remove("active");
+        fullPage.classList.remove("blur-page");
+      }, 2200);
     });
   }
 
-  popupClose?.addEventListener("click", () => {
-    popup.classList.remove("active");
-    fullPage.classList.remove("blur-page");
-  });
+  if (popupClose) {
+    popupClose.addEventListener("click", () => {
+      popup.classList.remove("active");
+      fullPage.classList.remove("blur-page");
+    });
+  }
 
   /* ===== PROJECTS SLIDER (4:5) ===== */
   const slider = document.querySelector("[data-slider]");
@@ -126,4 +110,5 @@ document.addEventListener("DOMContentLoaded", () => {
     slides[0].classList.add("active");
     start();
   }
+
 });

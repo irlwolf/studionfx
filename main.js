@@ -1,52 +1,59 @@
-/* ----- Exclusive slider auto ----- */
-let slides = document.querySelectorAll(".exclusive-slide");
-let current = 0;
-
-function nextSlide() {
-  slides[current].classList.remove("active");
-  current = (current + 1) % slides.length;
-  slides[current].classList.add("active");
+/* ================= EXCLUSIVE AUTO SLIDER ================= */
+const slides = document.querySelectorAll(".exclusive-slide");
+if (slides.length > 0) {
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 3500);
 }
-setInterval(nextSlide, 3500);
 
-/* ----- YouTube popup ----- */
-const ytPopup = document.getElementById("ytPopup");
+/* ================= PLAY VIDEO ON SAME PAGE ================= */
 const playYT = document.getElementById("playYT");
-const ytVideo = document.getElementById("ytVideo");
+const mainVideo = document.getElementById("exclusiveVideoMain");
+if (playYT && mainVideo) {
+  playYT.addEventListener("click", () => {
+    mainVideo.style.display = "block";
+    mainVideo.play();
+    mainVideo.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+}
 
-playYT.addEventListener("click", () => {
-  ytPopup.classList.add("active");
-  ytVideo.src += "&autoplay=1";
-});
-
-ytPopup.addEventListener("click", () => {
-  ytPopup.classList.remove("active");
-  ytVideo.src = ytVideo.src.replace("&autoplay=1", "");
-});
-
-// 🔥 CINEMATIC PRELOADER
+/* ================= PRELOADER ================= */
 window.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
   if (preloader) {
     setTimeout(() => {
       preloader.classList.add("hide");
-    }, 2600); // match CSS animation duration
-  }
-});
-// Background video blur on scroll
-const bgVideo = document.querySelector('.bg-video');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 80) {
-    bgVideo.classList.add('blur');
-  } else {
-    bgVideo.classList.remove('blur');
+    }, 2000);
   }
 });
 
-// 🔥 SCROLL REVEAL
+/* PRELOADER FAIL-SAFE */
+window.addEventListener("error", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) preloader.classList.add("hide");
+});
+
+/* Hero shine once on load */
+document.getElementById("hero-img")?.classList.add("shine-once");
+setTimeout(() => {
+  document.getElementById("hero-img")?.classList.remove("shine-once");
+}, 2000);
+
+/* ================= BACKGROUND VIDEO BLUR ON SCROLL ================= */
+const bgVideo = document.querySelector(".bg-video");
+if (bgVideo) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 80) bgVideo.classList.add("blur");
+    else bgVideo.classList.remove("blur");
+  });
+}
+
+/* ================= SCROLL REVEAL ================= */
 const revealElements = document.querySelectorAll(".reveal");
-if ("IntersectionObserver" in window && revealElements.length) {
+if (revealElements.length > 0 && "IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
@@ -58,78 +65,48 @@ if ("IntersectionObserver" in window && revealElements.length) {
     },
     { threshold: 0.2 }
   );
-
   revealElements.forEach(el => observer.observe(el));
 } else {
   revealElements.forEach(el => el.classList.add("in-view"));
 }
 
-// 🔥 CONTACT POPUP + CONFETTI + DING
+/* ================= CONTACT POPUP CONFIRMATION ================= */
 const form = document.getElementById("contactForm");
 const popup = document.getElementById("popupOverlay");
-const popupClose = document.getElementById("popupClose");
 const fullPage = document.getElementById("fullPage");
 const ding = document.getElementById("popupDing");
 
-if (form) {
-  form.addEventListener("submit", e => {
+if (form && popup) {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
-
-    fetch(form.action, { method: "POST", body: formData })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          popup.classList.add("active");
-          fullPage.classList.add("blur-page");
-          form.reset();
-
-          if (ding) ding.play();
-          if (window.confetti) {
-            confetti({
-              particleCount: 180,
-              spread: 140,
-              origin: { y: 0.7 }
-            });
-          }
-
-          setTimeout(() => {
-            popup.classList.remove("active");
-            fullPage.classList.remove("blur-page");
-          }, 2300);
-        } else {
-          alert("Something went wrong, please try again.");
-        }
-      })
-      .catch(() => alert("Network error — please try again later."));
+    popup.classList.add("active");
+    fullPage?.classList.add("blur-page");
+    form.reset();
+    if (ding) ding.play();
+    setTimeout(() => {
+      popup.classList.remove("active");
+      fullPage?.classList.remove("blur-page");
+    }, 2200);
   });
 }
 
-if (popupClose) {
-  popupClose.addEventListener("click", () => {
-    popup.classList.remove("active");
-    fullPage.classList.remove("blur-page");
-  });
-}
-
-// 🔥 PROJECTS AUTO SLIDER (4:5)
+/* ================= PROJECTS AUTO SLIDER ================= */
 const slider = document.querySelector("[data-slider]");
 if (slider) {
-  const slides = slider.querySelectorAll(".project-slide");
+  const slidesP = slider.querySelectorAll(".project-slide");
   const wrapper = slider.closest(".project-slider-wrapper");
   const dotsContainer = wrapper.querySelector("[data-dots]");
   const prevBtn = wrapper.querySelector("[data-prev]");
   const nextBtn = wrapper.querySelector("[data-next]");
-  let current = 0;
+  let currentP = 0;
   let intervalId;
 
-  // create dots
-  slides.forEach((_, index) => {
+  slidesP.forEach((_, i) => {
     const dot = document.createElement("div");
     dot.classList.add("slider-dot");
-    if (index === 0) dot.classList.add("active");
+    if (i === 0) dot.classList.add("active");
     dot.addEventListener("click", () => {
-      goToSlide(index);
+      goToSlide(i);
       restartAuto();
     });
     dotsContainer.appendChild(dot);
@@ -138,28 +115,19 @@ if (slider) {
   const dots = dotsContainer.querySelectorAll(".slider-dot");
 
   function goToSlide(i) {
-    slides[current].classList.remove("active");
-    dots[current].classList.remove("active");
-    current = (i + slides.length) % slides.length;
-    slides[current].classList.add("active");
-    dots[current].classList.add("active");
+    slidesP[currentP].classList.remove("active");
+    dots[currentP].classList.remove("active");
+    currentP = (i + slidesP.length) % slidesP.length;
+    slidesP[currentP].classList.add("active");
+    dots[currentP].classList.add("active");
   }
 
-  function next() { goToSlide(current + 1); }
-  function prev() { goToSlide(current - 1); }
+  function next() { goToSlide(currentP + 1); }
+  function prev() { goToSlide(currentP - 1); }
 
-  function startAuto() {
-    intervalId = setInterval(next, 4000);
-  }
-
-  function stopAuto() {
-    if (intervalId) clearInterval(intervalId);
-  }
-
-  function restartAuto() {
-    stopAuto();
-    startAuto();
-  }
+  function startAuto() { intervalId = setInterval(next, 4000); }
+  function stopAuto() { clearInterval(intervalId); }
+  function restartAuto() { stopAuto(); startAuto(); }
 
   if (nextBtn) nextBtn.addEventListener("click", () => { next(); restartAuto(); });
   if (prevBtn) prevBtn.addEventListener("click", () => { prev(); restartAuto(); });
@@ -167,6 +135,6 @@ if (slider) {
   slider.addEventListener("mouseenter", stopAuto);
   slider.addEventListener("mouseleave", startAuto);
 
-  slides[0].classList.add("active");
+  slidesP[0].classList.add("active");
   startAuto();
 }

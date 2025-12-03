@@ -14,6 +14,31 @@ document.addEventListener("DOMContentLoaded", () => {
       else bgVideo.classList.remove("blur");
     }
   });
+/* ----- Exclusive slider auto ----- */
+let slides = document.querySelectorAll(".exclusive-slide");
+let current = 0;
+
+function nextSlide() {
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}
+setInterval(nextSlide, 3500);
+
+/* ----- YouTube popup ----- */
+const ytPopup = document.getElementById("ytPopup");
+const playYT = document.getElementById("playYT");
+const ytVideo = document.getElementById("ytVideo");
+
+playYT.addEventListener("click", () => {
+  ytPopup.classList.add("active");
+  ytVideo.src += "&autoplay=1";
+});
+
+ytPopup.addEventListener("click", () => {
+  ytPopup.classList.remove("active");
+  ytVideo.src = ytVideo.src.replace("&autoplay=1", "");
+});
 
   /* ===== SCROLL REVEAL ===== */
   const revealElements = document.querySelectorAll(".reveal");

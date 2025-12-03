@@ -412,7 +412,6 @@ body::before {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100%;
   object-fit: cover;
   opacity: 0;
   transition: opacity 1.1s ease;
@@ -421,3 +420,35 @@ body::before {
 .exclusive-slide.active {
   opacity: 1;
 }
+
+.exclusive-play-btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  transition: .25s;
+}
+
+.exclusive-play-btn:hover {
+  background: #D00000;
+  border-color: #D00000;
+}
+
+/* YouTube popup size */
+.yt-box {
+  padding: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  max-width: 900px;
+}
+
